@@ -1,0 +1,13 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@2.1.0
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - ruby/install:
+          version: '3.2.2'
+      - run: echo "Ruby 3.2.2 has been installed"
+workflows: null

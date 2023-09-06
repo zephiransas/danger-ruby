@@ -10,4 +10,7 @@ jobs:
       - ruby/install:
           version: '3.2.2'
       - run: echo "Ruby 3.2.2 has been installed"
+      - run: bundle install
+      - run:
+          bundle exec danger
 workflows: null

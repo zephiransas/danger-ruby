@@ -1,9 +1,11 @@
 pattern = 'app/models/*.rb'
 regex_pattern = Regexp.new('\A' + Regexp.escape(pattern).gsub('\*', '.*') + '\z')
 
-git_start_line = /^@@ .+\+(?<line_number>\d+),/ 
-git_modified_line = /^\+/
+git_start_line = /^@@ .+\+(?<line_number>\d+)/ 
+# git_modified_line = /^\+/
+git_modified_line = /^\+[^+]*$/
 git_deleted_line = /^\-/
+git_ignore_line = /^\\ No newline at end of file$/
 
 (git.modified_files + git.added_files).each do |file|
   
@@ -23,6 +25,7 @@ git_deleted_line = /^\-/
     when git_start_line
         # 変更開始位置を示す行だった場合は何行目の変更か?を抜き出す
         start_line_number = Regexp.last_match[:line_number].to_i
+        puts "start_line_number=#{start_line_number}"
     when git_modified_line
       puts "line number = #{line_number}"
       puts line
@@ -37,6 +40,8 @@ git_deleted_line = /^\-/
     when git_deleted_line
         # 修正後のファイル行数が基準になるため削除行はカウントに含めない。
         next
+    when git_ignore_line
+      next    
     end
 
     if line_number > 0 then

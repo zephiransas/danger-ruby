@@ -4,7 +4,7 @@ module Danger
       (git.modified_files + git.added_files).select { |file_path| target?(file_path) }.each do |file_path|
         unified_diff = git.diff_for_file(file_path).patch
         review_diff(file_path, unified_diff).each do |result|
-          warn('ActiveRecordのorが使用されています', file: result[:file_path], line: [:line_number])
+          warn('ActiveRecordのorが使用されています', file: result[:file_path], line: result[:line_number])
         end
       end
     end

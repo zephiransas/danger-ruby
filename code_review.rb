@@ -30,7 +30,7 @@ module Danger
         when git_deleted_line
           next  # 修正後のファイル行数が基準になるため削除行はカウントに含めない。
         when git_ignore_line
-          next  # 不要な行なので無視。
+          next  # 不要な行なので無視
         end
 
         if line_number > 0

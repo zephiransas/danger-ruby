@@ -1,0 +1,19 @@
+name: check code
+
+on:
+  push:
+    branches:
+      - tmp/actions
+
+jobs:
+  build-and-push-app:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: test
+        if: ${{ github.event.forced }}
+        run: echo 'FORCED!!!!!!'
+
+      - name: test2
+        run: echo 'CHECK'        

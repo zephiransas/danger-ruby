@@ -1,19 +1,35 @@
 name: check code
 
+# on:
+#   pull_request:
+#     types: synchronize
+
 on:
   push:
     branches:
       - tmp/actions
-
+    
 jobs:
   build-and-push-app:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
-      
-      - name: test
-        if: ${{ github.event.forced }}
-        run: echo 'FORCED!!!!!!'
 
-      - name: test2
-        run: echo 'CHECK'        
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+        
+      # - name: test
+      #   if: ${{ github.event.before }}
+      #   run: echo 'FORCED!!!!!!'
+
+      # - name: test2
+      #   run: echo 'CHECK'
+
+      # - name: Post comments
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     URL: ${{ github.event.pull_request.html_url }}
+      #   run:
+      #     gh pr comment -F ./comments "${URL}"        

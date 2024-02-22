@@ -25,7 +25,7 @@ jobs:
       - run: echo 'test?'
 
       - run:
-          git log --format="%H" ${{github.event.before}}..${{github.event.after}} >> $COMMIT_LOGS
+          git log --format="%H" ${{github.event.before}}..${{github.event.after}} >> $GITHUB_OUTPUT
 
       # - name: test
       #   if: ${{ github.event.before }}

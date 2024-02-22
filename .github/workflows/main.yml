@@ -21,7 +21,9 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
 
       - run: echo 'test!'
-      
+
+      - run: echo 'test?'
+
       # - name: test
       #   if: ${{ github.event.before }}
       #   run: echo 'FORCED!!!!!!'

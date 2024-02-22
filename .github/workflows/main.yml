@@ -20,6 +20,8 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "$GITHUB_CONTEXT"
 
+      - run: echo 'test!'
+      
       # - name: test
       #   if: ${{ github.event.before }}
       #   run: echo 'FORCED!!!!!!'

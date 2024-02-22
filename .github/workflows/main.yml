@@ -24,6 +24,9 @@ jobs:
 
       - run: echo 'test?'
 
+      - run:
+          git log --format="%H" ${{github.event.before}}..${{github.event.after}} >> $COMMIT_LOGS
+
       # - name: test
       #   if: ${{ github.event.before }}
       #   run: echo 'FORCED!!!!!!'

@@ -27,7 +27,7 @@ jobs:
       - run: git fetch
 
       - run:
-          git log --format="%H" ${{github.event.before}}..${{github.event.after}} >> $GITHUB_OUTPUT
+          git log --format="%H" ${{github.event.before}}..${{github.event.after}}>>$GITHUB_OUTPUT
 
       # - name: test
       #   if: ${{ github.event.before }}

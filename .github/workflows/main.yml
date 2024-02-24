@@ -24,6 +24,8 @@ jobs:
 
       - run: echo 'test?'
 
+      - run: git fetch
+
       - run:
           git log --format="%H" ${{github.event.before}}..${{github.event.after}} >> $GITHUB_OUTPUT
 
